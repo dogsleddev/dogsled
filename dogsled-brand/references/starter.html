@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dogsled.dev</title>
+<meta name="description" content="A builder's log for modern finance. Aim high. Pull hard. Leave tracks.">
+<meta property="og:title" content="dogsled.dev">
+<meta property="og:description" content="A builder's log for modern finance. Aim high. Pull hard. Leave tracks.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F2EAD8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1116" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+
+<!-- No-flash theme script: must run before paint -->
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('dogsled-theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+        return;
+      }
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    } catch (e) {}
+  })();
+</script>
+
+<style>
+  /* ============ TOKENS (full set in references/tokens.css) ============ */
+  :root {
+    --ember:   #E66A3C;
+    --aurora:  #6FE0B4;
+    --frost:   #8FB8D6;
+
+    --serif: "Fraunces", ui-serif, Georgia, serif;
+    --sans:  "Geist", -apple-system, "Helvetica Neue", sans-serif;
+    --mono:  "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+
+    --t-xs:   clamp(10px,  1.0vw,  11px);
+    --t-sm:   clamp(11px,  1.1vw,  12px);
+    --t-base: clamp(13px,  1.3vw,  14px);
+    --t-md:   clamp(14px,  1.5vw,  16px);
+    --t-lg:   clamp(18px,  2.0vw,  20px);
+    --t-xl:   clamp(22px,  2.6vw,  28px);
+    --t-2xl:  clamp(28px,  3.6vw,  40px);
+    --t-3xl:  clamp(40px,  5.0vw,  56px);
+    --t-4xl:  clamp(56px,  8.0vw,  96px);
+    --t-hero: clamp(64px, 12.0vw, 168px);
+
+    --t-fast:   150ms;
+    --t-base-d: 200ms;
+    --t-slow:   320ms;
+    --easing:   cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="light"] {
+    --bg: #F2EAD8; --bg-2: #F7F0DE; --bg-3: #EDE3CD; --bg-4: #E9DFC6;
+    --surface: #0E1116;
+    --surface-dim: rgba(14,17,22,0.82); --surface-soft: rgba(14,17,22,0.62);
+    --surface-quiet: rgba(14,17,22,0.42);
+    --hair: rgba(14,17,22,0.14); --hair-2: rgba(14,17,22,0.24);
+    --ember-text: #C25431; --aurora-text: #2A8E6D; --frost-text: #4A779E;
+    --topo-stroke: rgba(14,17,22,0.32); --topo-opacity: 0.16;
+    --grain-blend: multiply; --grain-opacity: 0.55;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0E1116; --bg-2: #161A21; --bg-3: #1F242D; --bg-4: #2A3038;
+    --surface: #F2EAD8;
+    --surface-dim: rgba(242,234,216,0.78); --surface-soft: rgba(242,234,216,0.62);
+    --surface-quiet: rgba(242,234,216,0.45);
+    --hair: rgba(242,234,216,0.12); --hair-2: rgba(242,234,216,0.22);
+    --ember-text: #E66A3C; --aurora-text: #6FE0B4; --frost-text: #8FB8D6;
+    --topo-stroke: rgba(242,234,216,0.28); --topo-opacity: 0.22;
+    --grain-blend: overlay; --grain-opacity: 0.5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--surface);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    transition: background var(--t-slow) var(--easing), color var(--t-slow) var(--easing);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ============ ATMOSPHERE ============ */
+  .topo {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: var(--topo-opacity);
+    transition: opacity var(--t-slow) var(--easing);
+  }
+  .topo svg path { stroke: var(--topo-stroke); transition: stroke var(--t-slow) var(--easing); }
+  .grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    mix-blend-mode: var(--grain-blend);
+    opacity: var(--grain-opacity);
+  }
+  [data-theme="dark"] .grain {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.92  0 0 0 0 0.85  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  [data-theme="light"] .grain {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0.1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  main { position: relative; z-index: 2; }
+
+  /* TODO: add your page-specific styles here */
+</style>
+</head>
+<body>
+
+<!-- ============ MARK DEFINITIONS ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 64 64">
+      <g class="m-trail" fill="none" stroke="currentColor" stroke-width="5"
+         stroke-linecap="square" stroke-linejoin="miter">
+        <path d="M 16 50 L 36 26 L 56 50" opacity="0.55"/>
+      </g>
+      <g class="m-lead" fill="none" stroke="currentColor" stroke-width="5"
+         stroke-linecap="square" stroke-linejoin="miter">
+        <path d="M 8 46 L 28 22 L 48 46"/>
+      </g>
+      <g class="m-star">
+        <circle cx="28" cy="14" r="3.2" fill="currentColor"/>
+      </g>
+    </symbol>
+    <symbol id="mark-sm" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="6"
+         stroke-linecap="square" stroke-linejoin="miter">
+        <path d="M 12 48 L 32 22 L 52 48"/>
+      </g>
+      <circle cx="32" cy="13" r="3.6" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ ATMOSPHERE ============ -->
+<div class="topo">
+  <svg viewBox="0 0 1600 900" preserveAspectRatio="none">
+    <g fill="none" stroke-width="0.5">
+      <path d="M 0 200 Q 400 180, 800 230 T 1600 210"/>
+      <path d="M 0 280 Q 400 250, 800 310 T 1600 290"/>
+      <path d="M 0 360 Q 400 330, 800 380 T 1600 370"/>
+      <path d="M 0 440 Q 400 410, 800 470 T 1600 450"/>
+      <path d="M 0 540 Q 400 520, 800 560 T 1600 540"/>
+      <path d="M 0 640 Q 400 610, 800 670 T 1600 650"/>
+      <path d="M 0 740 Q 400 720, 800 770 T 1600 750"/>
+    </g>
+  </svg>
+</div>
+<div class="grain"></div>
+
+<main>
+  <!-- TODO: build the page here -->
+</main>
+
+<script>
+  // Theme toggle wiring
+  function setTheme(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    try { localStorage.setItem('dogsled-theme', mode); } catch(e) {}
+  }
+  document.querySelectorAll('.theme-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => setTheme(btn.dataset.mode));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 't' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      const current = document.documentElement.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    }
+  });
+</script>
+
+</body>
+</html>

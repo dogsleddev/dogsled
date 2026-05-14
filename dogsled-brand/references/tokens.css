@@ -1,0 +1,116 @@
+/* ============================================================
+   dogsled.dev — Brand tokens v1.3
+   Drop this into globals.css or the top of any stylesheet.
+   ============================================================ */
+
+:root {
+  /* === ACCENTS — identical across themes === */
+  --ember:    #E66A3C;
+  --aurora:   #6FE0B4;
+  --frost:    #8FB8D6;
+
+  /* === TYPE STACK === */
+  --serif: "Fraunces", ui-serif, Georgia, serif;
+  --sans:  "Geist", -apple-system, "Helvetica Neue", sans-serif;
+  --mono:  "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  /* === TYPE SCALE — 10 steps, responsive === */
+  --t-xs:    clamp(10px,  1.0vw,  11px);
+  --t-sm:    clamp(11px,  1.1vw,  12px);
+  --t-base:  clamp(13px,  1.3vw,  14px);
+  --t-md:    clamp(14px,  1.5vw,  16px);
+  --t-lg:    clamp(18px,  2.0vw,  20px);
+  --t-xl:    clamp(22px,  2.6vw,  28px);
+  --t-2xl:   clamp(28px,  3.6vw,  40px);
+  --t-3xl:   clamp(40px,  5.0vw,  56px);
+  --t-4xl:   clamp(56px,  8.0vw,  96px);
+  --t-hero:  clamp(64px, 12.0vw, 168px);
+
+  /* === MOTION === */
+  --t-fast:   150ms;
+  --t-base-d: 200ms;
+  --t-slow:   320ms;
+  --easing:   cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === LIGHT THEME (default) === */
+[data-theme="light"] {
+  --bg:           #F2EAD8;
+  --bg-2:         #F7F0DE;
+  --bg-3:         #EDE3CD;
+  --bg-4:         #E9DFC6;
+
+  --surface:      #0E1116;
+  --surface-dim:  rgba(14,17,22,0.82);
+  --surface-soft: rgba(14,17,22,0.62);
+  --surface-quiet:rgba(14,17,22,0.42);
+
+  --hair:         rgba(14,17,22,0.14);
+  --hair-2:       rgba(14,17,22,0.24);
+  --hair-3:       rgba(14,17,22,0.34);
+
+  /* Darkened accent text variants — required for WCAG AA on parchment */
+  --ember-text:   #C25431;
+  --aurora-text:  #2A8E6D;
+  --frost-text:   #4A779E;
+
+  --topo-stroke:    rgba(14,17,22,0.32);
+  --topo-opacity:   0.16;
+  --grain-blend:    multiply;
+  --grain-opacity:  0.55;
+
+  --card-shadow:    0 1px 0 rgba(255,255,255,0.5), 0 30px 60px -20px rgba(14,17,22,0.18);
+}
+
+/* === DARK THEME === */
+[data-theme="dark"] {
+  --bg:           #0E1116;
+  --bg-2:         #161A21;
+  --bg-3:         #1F242D;
+  --bg-4:         #2A3038;
+
+  --surface:      #F2EAD8;
+  --surface-dim:  rgba(242,234,216,0.78);
+  --surface-soft: rgba(242,234,216,0.62);
+  --surface-quiet:rgba(242,234,216,0.45);
+
+  --hair:         rgba(242,234,216,0.12);
+  --hair-2:       rgba(242,234,216,0.22);
+  --hair-3:       rgba(242,234,216,0.32);
+
+  /* On dark, full-saturation accents work for text */
+  --ember-text:   #E66A3C;
+  --aurora-text:  #6FE0B4;
+  --frost-text:   #8FB8D6;
+
+  --topo-stroke:    rgba(242,234,216,0.28);
+  --topo-opacity:   0.22;
+  --grain-blend:    overlay;
+  --grain-opacity:  0.5;
+
+  --card-shadow:    inset 0 1px 0 rgba(242,234,216,0.06), 0 8px 24px -4px rgba(0,0,0,0.4);
+}
+
+/* === RESET (optional but recommended) === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--surface);
+  font-family: var(--sans);
+  font-feature-settings: "ss01", "ss02", "cv11";
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  transition: background var(--t-slow) var(--easing),
+              color var(--t-slow) var(--easing);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
