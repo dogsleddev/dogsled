@@ -2,7 +2,7 @@
 
 ## What this project is
 
-A single-page landing for `dogsled.dev` — a builder's log for modern finance. Wordmark, tagline, list of ten modules, links to the two that are live (`staff.dogsled.dev` and `artool.dogsled.dev`).
+A single-page landing for `dogsled.dev` — a builder's log for modern finance. Wordmark, tagline, a reverse-chronological list of modules (newest on top), and links to the live tools (`freightclose.dogsled.dev`, `staff.dogsled.dev`, `artool.dogsled.dev`).
 
 Status: bare-bones, intentionally. Ships today. Evolves from here.
 
