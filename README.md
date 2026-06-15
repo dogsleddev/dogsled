@@ -1,6 +1,6 @@
 # dogsled.dev — Landing Page
 
-The bare-bones landing page for `dogsled.dev`. Wordmark, tagline, ten modules with status pills, links to the two live tools.
+The bare-bones landing page for `dogsled.dev`. Wordmark, tagline, the module list with status pills, links to the live tools.
 
 ## What this is
 
@@ -9,8 +9,8 @@ A single static HTML file. No framework, no build step. Designed to ship today a
 The page does three jobs:
 
 1. **Establishes the brand** — wordmark, tagline, dogsled atmosphere (topo lines, grain, parchment, ember accent).
-2. **Lists the ten modules** — current scope of the kit, ordered roughly by build sequence.
-3. **Links to the two live tools** — `staff.dogsled.dev` (Resource Staffing) and `artool.dogsled.dev` (AR Forecast).
+2. **Lists the modules** — a reverse-chronological builder's log of the kit (newest on top).
+3. **Links to the live tools** — `freightclose.dogsled.dev` (Freight Accrual Close), `staff.dogsled.dev` (Resource Staffing), and `artool.dogsled.dev` (AR Forecast).
 
 Everything else is a Notes pill — "not yet shipped, but on the trail."
 
@@ -58,22 +58,25 @@ Open `index.html`. Find the `<ol class="module-list">` section. Each module is a
 - **For linked modules** (have a live URL): use `<a class="module-item linked" href="...">`. Use the `pill active` status.
 - **For unshipped modules**: use `<div class="module-item notes-only">`. Use the `pill notes` status.
 
-**This list is the 10 dogsled WORKSHOP modules — the standalone tutorials. Not the same as the dogfood.cafe SaaS nav (which has 21 modules in 6 groups).** The landing page shows the content roadmap, not the product's sidebar.
+**This list is the dogsled WORKSHOP modules — the standalone tutorials. Not the same as the dogfood.cafe SaaS nav (which has 21 modules in 6 groups).** The landing page shows the builder's log, not the product's sidebar.
 
-**The order is the BUILD SEQUENCE, locked:**
+**The list is a REVERSE-CHRONOLOGICAL builder's log (newest on top).** ⚠️ Convention changed 2026-06-14 — it used to be a fixed 10-module roadmap in ascending order. Now: the project built *first* gets number 01 and sits at the **bottom**; each new tool gets the next build-sequence number and goes on **top**. The numbers are retained as labels, so they read 05 → 01 down the page.
+
+Current list (top → bottom, as rendered):
 
 ```
-01  Dashboard          02  Cash Flow           03  AR Forecast
-04  Resource Staffing  05  Projects            06  WIP
-07  Rolling Forecast   08  Pipeline            09  Budget
-10  606 Revenue Rec
+05  Freight Accrual Close  → freightclose.dogsled.dev   Active   ← newest
+04  Resource Staffing      → staff.dogsled.dev          Active
+03  AR Forecast            → artool.dogsled.dev         Active
+02  Cash Flow                                           Notes
+01  Dashboard                                           Notes    ← first built
 ```
 
-AR Forecast and Resource Staffing are *currently live* (old versions, slated for a rebuild) so they're `linked` + `active` — but they sit at positions 03 and 04 because that's their place in the sequence. Do NOT float live tools to the top just because they're deployed. The numbering tells the story of the plan; a visitor should see the intended arc, not the accident of what shipped first.
+When you ship a new tool: give it the next build-sequence number, add it as the **first** `<li>` (an `<a class="module-item linked" href="...">` with `pill active`), and link its subdomain. Unbuilt placeholders use `<div class="module-item notes-only">` + `pill notes`. Leave existing numbers alone — a project's number never changes once assigned.
 
-When a module ships: change its `<div>` to an `<a>`, add the href, swap `notes-only` → `linked` and `pill notes` → `pill active`. Leave its number alone — the position never changes.
+The old roadmap placeholders (Projects, WIP, Rolling Forecast, Pipeline, Budget, 606 Revenue Rec) were removed on 2026-06-14 — the list grows organically as tools ship, not from a fixed 10-item plan.
 
-Note: Month-End Close and PBC live in the dogfood.cafe SaaS nav but are NOT among the 10 workshop tutorials. Don't add them to this list.
+Note: Month-End Close and PBC live in the dogfood.cafe SaaS nav but are NOT among the workshop tutorials. Don't add them to this list.
 
 ## What's deliberately NOT here yet
 
