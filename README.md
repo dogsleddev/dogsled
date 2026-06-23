@@ -10,7 +10,7 @@ The page does three jobs:
 
 1. **Establishes the brand** — wordmark, tagline, dogsled atmosphere (topo lines, grain, parchment, ember accent).
 2. **Lists the modules** — a reverse-chronological builder's log of the kit (newest on top).
-3. **Links to the live tools** — `freightclose.dogsled.dev` (Freight Accrual Close), `staff.dogsled.dev` (Resource Staffing), and `artool.dogsled.dev` (AR Forecast).
+3. **Links to the live tools** — `dogfood.cafe` (AI-native FP&A SaaS), `freightclose.dogsled.dev` (Freight Accrual Close), `staff.dogsled.dev` (Resource Staffing), and `artool.dogsled.dev` (AR Forecast).
 
 Everything else is a Notes pill — "not yet shipped, but on the trail."
 
@@ -58,25 +58,26 @@ Open `index.html`. Find the `<ol class="module-list">` section. Each module is a
 - **For linked modules** (have a live URL): use `<a class="module-item linked" href="...">`. Use the `pill active` status.
 - **For unshipped modules**: use `<div class="module-item notes-only">`. Use the `pill notes` status.
 
-**This list is the dogsled WORKSHOP modules — the standalone tutorials. Not the same as the dogfood.cafe SaaS nav (which has 21 modules in 6 groups).** The landing page shows the builder's log, not the product's sidebar.
+**This list is the builder's log — the tools and products built under dogsled, newest on top.** It is NOT the dogfood.cafe SaaS *nav* (which has 21 modules in 6 groups): dogfood.cafe appears here **once**, as a single product entry (06), not as its 21 internal modules. The landing page shows the builder's log, not the product's sidebar.
 
 **The list is a REVERSE-CHRONOLOGICAL builder's log (newest on top).** ⚠️ Convention changed 2026-06-14 — it used to be a fixed 10-module roadmap in ascending order. Now: the project built *first* gets number 01 and sits at the **bottom**; each new tool gets the next build-sequence number and goes on **top**. The numbers are retained as labels, so they read 05 → 01 down the page.
 
 Current list (top → bottom, as rendered):
 
 ```
-05  Freight Accrual Close  → freightclose.dogsled.dev   Active   ← newest
+06  dogfood.cafe           → dogfood.cafe               Active   ← newest
+05  Freight Accrual Close  → freightclose.dogsled.dev   Active
 04  Resource Staffing      → staff.dogsled.dev          Active
 03  AR Forecast            → artool.dogsled.dev         Active
 02  Cash Flow                                           Notes
 01  Dashboard                                           Notes    ← first built
 ```
 
-When you ship a new tool: give it the next build-sequence number, add it as the **first** `<li>` (an `<a class="module-item linked" href="...">` with `pill active`), and link its subdomain. Unbuilt placeholders use `<div class="module-item notes-only">` + `pill notes`. Leave existing numbers alone — a project's number never changes once assigned.
+When you ship a new tool: give it the next build-sequence number, add it as the **first** `<li>` (an `<a class="module-item linked" href="...">` with `pill active`), and link its live URL (a `*.dogsled.dev` subdomain or an external domain like `dogfood.cafe`). Unbuilt placeholders use `<div class="module-item notes-only">` + `pill notes`. Leave existing numbers alone — a project's number never changes once assigned.
 
 The old roadmap placeholders (Projects, WIP, Rolling Forecast, Pipeline, Budget, 606 Revenue Rec) were removed on 2026-06-14 — the list grows organically as tools ship, not from a fixed 10-item plan.
 
-Note: Month-End Close and PBC live in the dogfood.cafe SaaS nav but are NOT among the workshop tutorials. Don't add them to this list.
+Note: dogfood.cafe itself is listed once as entry 06. Its *internal* modules (Month-End Close, PBC, …) live in the dogfood.cafe SaaS nav and do NOT get their own entries here — list the product, not its sidebar.
 
 ## What's deliberately NOT here yet
 
